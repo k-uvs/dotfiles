@@ -1,0 +1,203 @@
+URxvt*termName: xterm-256color
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintmedium
+Xft.lcdfilter:  lcddefault
+Xcursor.size:	30
+
+*foreground: #00cc00
+*foreground_bold: #a8a19f
+!*cursor: #a8a19f
+*background:       #1b1918
+!!*background: rgba(0, 0, 0, .7)
+
+!! black
+*color0: #1b1918
+*color8: #766e6b
+!! red
+*color1: #f22c40
+*color9: #f22c40
+!! green
+*color2: #5ab738
+*color10: #5ab738
+!! yellow
+*color3: #d5911a
+*color11: #d5911a
+!! blue
+*color4: #407ee7
+*color12: #407ee7
+!! magenta
+*color5: #6666ea
+*color13: #6666ea
+!! cyan
+*color6: #00ad9c
+*color14: #00ad9c
+!! white
+*color7: #a8a19f
+*color15: #f1efee
+
+URxvt.intensityStyles:	false
+URxvt.background:       [90]#000000
+URxvt.depth:		32
+URxvt.font: 		xft:Fantasque Sans Mono:size=12,\ xft:Symbola:size:12,\ xft:FontAwesome:size=12
+URxvt.scrollBar:	false
+URxvt.cursorColor:	white
+
+!! Extensions
+URxvt.perl-ext-common:	default,matcher,resize-font,url-select,keyboard-select
+URxvt.colorUL:		#4682B4
+!! url-select
+URxvt.keysym.M-u:	perl:url-select:select_next
+URxvt.url-select.launcher: linkhandler
+URxvt.url-select.underline: true
+!! keyboard-select:
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+!! resize-font
+URxvt.resize-font.smaller:	C-Down
+URxvt.resize-font.bigger:	C-Up
+!! Matcher
+URxvt.url-launcher:	firefox
+URxvt.matcher.button:	1
+
+rofi.font:		Monospace 12
+rofi.color-enabled:	true
+rofi.color-window:	#000, #000, #000
+rofi.color-normal:	#111, #819396, #222, #008ed4, #ffffff
+rofi.color-active:	#002b37, #008ed4, #003643, #008ed4, #66c6ff
+rofi.color-urgent:	#002b37, #da4281, #003643, #008ed4, #890661
+rofi.dpi:		96
+rofi.fake-transparency:	true
+rofi.lines:		10
+rofi.bw:		5
+rofi.opacity:		"10"
+rofi.hide-scrollbar:	true
+rofi.width:		50
+
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+XTerm.termName: xterm-256color
+
+! Fonts ====================================================
+! set font and fontsize
+XTerm*faceName: Fantasque Sans Mono
+XTerm*faceSize: 14
+
+! VT Font Menu: Unreadable
+xterm*faceSize1: 8
+! VT font menu: Tiny
+xterm*faceSize2: 10
+! VT font menu: Medium
+xterm*faceSize3: 12
+! VT font menu: Large
+xterm*faceSize4: 16
+! VT font menu: Huge
+xterm*faceSize5: 22
+xterm*internalBorder: 15
+
+! Ensure that your locale is set up for UTF-8. If you do not use UTF-8, you may need to force xterm to more strictly follow your locale by setting
+XTerm.vt100.locale: true
+
+! Cursor ====================================================
+! pointer and cursor (blinking and color)
+XTerm*pointerColor: white
+XTerm*pointerColorBackground: black
+XTerm*cursorColor: white
+XTerm*cursorBlink: true
+
+
+!! Selecting Text ========================================================
+! Only select text
+XTerm*highlightSelection: true
+! Remove trailing spaces
+XTerm*trimSelection: true
+
+!! Scrolling ========================================================
+! Use: Shift-Pageup / Shift-Pagedown to scroll or mousewheel
+! Lines of output that you can scroll back over
+XTerm*saveLines: 16384
+
+! Turn the scrollbar on, and put it on the right
+! XTerm.vt100.scrollBar: true
+! XTerm.vt100.scrollbar.width: 8
+! xterm*scrollBar: true
+! xterm*rightScrollBar: true
+
+! Do not scroll when there is new input e.g. tail -f /var/syslog
+XTerm*scrollTtyOutput: false
+
+
+!! Keybinding ========================================================
+! http://blog.rot13.org/2010/03/change-font-size-in-xterm-using-keyboard.html
+! - change fontsize on the fly (ctrl+plus = increase ; ctrl+minus = decrease, ctrl+0 = default)
+! - copy/paste hotkey (ctrl+shift+c = copy ; ctrl+shift+v = paste)
+! - open url (clickable links)
+!   1) double click to highlight the full url
+!   2) Shift + click it to open it
+XTerm.vt100.translations: #override \n\
+  Ctrl <Key> minus: smaller-vt-font() \n\
+  Ctrl <Key> plus: larger-vt-font() \n\
+  Ctrl <Key> 0: set-vt-font(d) \n\
+  Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+  Ctrl Shift <Key>V: insert-selection(CLIPBOARD) \n\
+  Shift <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY) \n\
+  <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n\
+  <Btn2Up>: insert-selection(PRIMARY)
+
+! enable copy/paste hotkey to work (shift+insert = paste ; mouse highlight = copy)
+XTerm*selectToClipboard: true
+! disable fullscreen hotkey alt+enter (hotkey conflicts with weechat, midnight commander ...etc)
+XTerm*fullscreen: never
+! enable alt key to work
+XTerm*metaSendsEscape: true
+! Fix the backspace key (for Emacs)
+XTerm.vt100.backarrowKey: false
+XTerm.ttyModes: erase ^?
+
+! double-click to select whole URLs :D
+! https://scarygliders.net/2011/12/01/customize-xterm-the-original-and-best-terminal/
+XTerm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+! Tips: Left and right selection (text selection using left button for beginning and right button for end)
+! Tips: Triple Click ( 1 click = nothing, 2 click = select word, 3 click = select line )
+!
+! XTerm*on3Clicks: regex [[:alpha:]]+://([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+XTerm*on3Clicks: regex ([[:alpha:]]+://)?([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+
+! <BtnUp>:select-end(SELECT, CUT_BUFFER0) \n\
+! Ctrl <Btn4Down>:scroll-back(1,halfpage,m) \n\
+! <Btn4Down>:scroll-back(5,line,m) \n\
+! Ctrl <Btn5Down>:scroll-forw(1,halfpage,m) \n\
+! <Btn5Down>:scroll-forw(5,line,m) \n\
+
+!    Ctrl <Key>M: maximize() \n\
+!    Ctrl <Key>R: restore() \n\
+!                 Shift <KeyPress> Prior:scroll-back(1,halfpage) \n\
+!                  Shift <KeyPress> Next:scroll-forw(1,halfpage) \n\
+!                Shift <KeyPress> Select:select-cursor-start() \
+!                                        select-cursor-end(SELECT, CUT_BUFFER0) \n\
+!                Shift <KeyPress> Insert:insert-selection(SELECT, CUT_BUFFER0) \n\
+!                        Alt <Key>Return:fullscreen() \n\
+!               <KeyRelease> Scroll_Lock:scroll-lock() \n\
+!           Shift~Ctrl <KeyPress> KP_Add:larger-vt-font() \n\
+!           Shift Ctrl <KeyPress> KP_Add:smaller-vt-font() \n\
+!           Shift <KeyPress> KP_Subtract:smaller-vt-font() \n\
+!                       ~Meta <KeyPress>:insert-seven-bit() \n\
+!                        Meta <KeyPress>:insert-eight-bit() \n\
+!                       !Ctrl <Btn1Down>:popup-menu(mainMenu) \n\
+!                       ~Meta <Btn1Down>:select-start() \n\
+!                     ~Meta <Btn1Motion>:select-extend() \n\
+!                       !Ctrl <Btn2Down>:popup-menu(vtMenu) \n\
+!                 ~Ctrl ~Meta <Btn2Down>:ignore() \n\
+!                        Meta <Btn2Down>:clear-saved-lines() \n\
+!                   ~Ctrl ~Meta <Btn2Up>:insert-selection(SELECT, CUT_BUFFER0) \n\
+!                       !Ctrl <Btn3Down>:popup-menu(fontMenu) \n\
+!                 ~Ctrl ~Meta <Btn3Down>:start-extend() \n\
+!                     ~Meta <Btn3Motion>:select-extend() \n\
+!                        Ctrl <Btn4Down>:scroll-back(1,halfpage,m) \n\
+!                             <Btn4Down>:scroll-back(5,line,m)     \n\
+!                        Ctrl <Btn5Down>:scroll-forw(1,halfpage,m) \n\
+!                                <BtnUp>:select-end(SELECT, CUT_BUFFER0) \n\
+!                              <BtnDown>:ignore()
